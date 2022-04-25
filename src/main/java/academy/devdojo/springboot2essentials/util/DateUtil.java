@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class DateUtil {
-
     public String formatLocalDateTimeToDatabaseStyle(LocalDateTime dateTime) {
         return DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss").format(dateTime);
     }
