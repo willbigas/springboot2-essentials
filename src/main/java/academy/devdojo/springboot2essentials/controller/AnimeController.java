@@ -23,8 +23,8 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> list() {
-        return ResponseEntity.ok(animeService.listAll());
+    public ResponseEntity<List<Anime>> findAll() {
+        return ResponseEntity.ok(animeService.findAll());
     }
 
     @GetMapping(path = "/{id}")
