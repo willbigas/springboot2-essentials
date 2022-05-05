@@ -17,9 +17,16 @@
     <description>springboot2-essentials</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+
+        <JAVA_11_HOME>C:\Program Files\Java\jdk-11.0.14</JAVA_11_HOME>
+
     </properties>
 
     <dependencies>
@@ -33,6 +40,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>
@@ -103,8 +115,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <executable>${JAVA_11_HOME}/bin/javac</executable>
+                    <release>${java.version}</release>
+                    <compilerVersion>${java.version}</compilerVersion>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -123,6 +138,12 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
             </plugin>
 
         </plugins>

@@ -21,11 +21,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class AnimeControllerIT {
+class AnimeControllerIT {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -50,7 +51,7 @@ public class AnimeControllerIT {
                 .isNotEmpty()
                 .hasSize(1);
 
-        Assertions.assertThat(animePage.stream().toList().get(0).getName()).isEqualTo(expectedName);
+        Assertions.assertThat(animePage.stream().collect(Collectors.toList()).get(0).getName()).isEqualTo(expectedName);
 
     }
 
