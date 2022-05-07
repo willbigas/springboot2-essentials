@@ -18,15 +18,11 @@
 
     <properties>
         <java.version>11</java.version>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-
-        <JAVA_11_HOME>C:\Program Files\Java\jdk-11.0.14</JAVA_11_HOME>
-
+        <springdoc-openapi-ui.version>1.6.8</springdoc-openapi-ui.version>
     </properties>
 
     <dependencies>
@@ -55,6 +51,24 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-security</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
 
         <dependency>
@@ -117,7 +131,6 @@
                 <configuration>
                     <verbose>true</verbose>
                     <fork>true</fork>
-                    <executable>${JAVA_11_HOME}/bin/javac</executable>
                     <release>${java.version}</release>
                     <compilerVersion>${java.version}</compilerVersion>
                     <annotationProcessorPaths>
