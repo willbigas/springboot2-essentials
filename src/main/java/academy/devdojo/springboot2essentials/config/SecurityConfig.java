@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/animes/admin/**").hasRole("ADMIN") // Restringe URL a um tipo de Role (Admin)
+                .antMatchers("/animes/**").hasRole("USER") // Restringe URL a um tipo de Role (USER)
                 .anyRequest()
                 .authenticated()
                 .and()
