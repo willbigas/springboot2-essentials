@@ -1,5 +1,7 @@
 package academy.devdojo.springboot2essentials.config;
 
+import academy.devdojo.springboot2essentials.service.DefaultUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,7 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final DefaultUserDetailsService userDetailsService;
+
     /**
      * BasicAuthenticationFilter (Base64 Crypt)
      * UsernamePasswordAuthenticationFilter (User and Password)
@@ -38,14 +44,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        log.info("Password encoded {}" , passwordEncoder.encode("test"));
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("{noop}admin")
-                .roles("USER", "ADMIN")
-                .and()
-                .withUser("devdojo")
-                .password("{noop}academy")
-                .roles("USER");
+        log.info("Password encoded {}" , passwordEncoder.encode("1234"));
+//        auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password("{noop}admin")
+//                .roles("USER", "ADMIN")
+//                .and()
+//                .withUser("devdojo")
+//                .password("{noop}academy")
+//                .roles("USER");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 }
